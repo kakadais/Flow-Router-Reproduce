@@ -1,0 +1,341 @@
+<template name="index">
+  {{!--
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"></script>
+  --}}
+
+  <main class="main-content" id="main-content">
+    <section class="bg-dark text-white position-relative overflow-hidden">
+      <div
+        class="w-100 h-100 opacity-25 position-absolute end-0 top-0 bg-cover bg-no-repeat bg-center"
+        style="background-image: url('assets/img/camp/camp.jpeg')"
+      >
+        <div
+          class="jarallax h-100 w-100"
+          data-video-src="mp4:./assets/videos/officeloop.mp4"
+        ></div>
+      </div>
+      <div class="container pt-12 pb-12 position-relative z-index-1">
+        <div class="row pt-lg-9 pb-lg-5 align-items-center">
+          <div class="col-lg-8 mx-auto text-center mb-5 mb-lg-0">
+            <!--begin:swiper text-slider-->
+            <div
+              class="swiper-container swiper-text w-100 height-3x fs-5 fw-bold text-uppercase mb-3 text-white overflow-hidden"
+            >
+              <!--begin:Slider wrapper-->
+              <div class="swiper-wrapper text-warning">
+                <!--Slide item-->
+                <div class="swiper-slide justify-content-center">
+                </div>
+                <!--Slide item-->
+                <div class="swiper-slide justify-content-center">
+                </div>
+              </div>
+              <!--end:Slider wrapper-->
+            </div>
+            <!--end:swiper text-slider-->
+
+            <!--Hero title-->
+          </div>
+        </div>
+      </div>
+      <svg
+        class="position-absolute start-0 bottom-0 mb-n1 text-white"
+        preserveAspectRatio="none"
+        width="100%"
+        height="80"
+        viewBox="0 0 1460 120"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M122 22.8261L0 0V120H1460V0L1338 22.8261C1217 44.1304 973 88.2609 730 88.2609C487 88.2609 243 44.1304 122 22.8261Z"
+          fill="currentColor"
+        ></path>
+      </svg>
+    </section>
+
+    {{!--캠프소개--}}
+    <section class="position-relative">
+      <div class="container py-9 position-relative z-index-1">
+        <div
+          class="row mt-5 mb-4 mb-lg-5 align-items-end justify-content-between"
+        >
+          <div class="mb-5">
+            <a href="/campInfo">
+              <h2
+                class="display-5 text-black"
+                style="
+                  display: inline-block;
+                  transform: scale(1);
+                  transition: transform 0.2s ease-in-out;
+                "
+                onmouseover="this.style.transform='scale(1.2)';"
+                onmouseout="this.style.transform='scale(1)';"
+              >
+                CAMP INFO
+              </h2>
+            </a>
+            <a href="/campInfo">
+              <button type="button" class="btn btn-outline-dark float-end">
+                <i class="fa-solid fa-plus"></i>
+                more
+              </button>
+            </a>
+          </div>
+        </div>
+
+        <div
+          id="carouselExampleInterval"
+          class="carousel slide"
+          data-bs-ride="carousel"
+        >
+          <div class="carousel-inner">
+            {{#each campInfo in campInfoArray}}
+            <div
+              class="carousel-item {{ active @index }}"
+              data-bs-interval="5000"
+            >
+              <div
+                id="projects"
+                data-isotope='{"layoutMode": "masonry"}'
+                class="row row-cols-md-1 row-cols-lg-2 row-cols-xl-3 justify-content-center pt-4"
+              >
+                {{#each campInfo}}
+                <div class="javascript grid-item {{ slideClass @index }}">
+                  <!--begin:Project card-->
+                  <a href="/campDetail/{{_id}}" class="card-hover">
+                    <div
+                      class="overflow-hidden position-relative mb-4 rounded-4"
+                    >
+                      <img
+                        src="{{link}}"
+                        alt=""
+                        class="img-zoom img-fluid rounded-4"
+                        style="height: 30rem; width: 30rem; object-fit: cover"
+                      />
+                    </div>
+                  </a>
+                  <!--end:Project card-->
+                </div>
+                {{/each}}
+              </div>
+            </div>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {{!--캠프앨범-------------------------------------}}
+    <section class="position-relative">
+      <div class="container py-9 py-lg-11 position-relative z-index-1">
+        <div class="row mb-4 mb-lg-5 align-items-end justify-content-between">
+          <div class="mb-5">
+            <a href="/campAlbum">
+              <h2
+                class="display-5 text-black"
+                style="
+                  display: inline-block;
+                  transform: scale(1);
+                  transition: transform 0.2s ease-in-out;
+                "
+                onmouseover="this.style.transform='scale(1.2)';"
+                onmouseout="this.style.transform='scale(1)';"
+              >
+                CAMP ALBUM
+              </h2>
+            </a>
+            <a href="/campAlbum">
+              <button type="button" class="btn btn-outline-dark float-end">
+                <i class="fa-solid fa-plus"></i>
+                more
+              </button>
+            </a>
+          </div>
+        </div>
+        <div
+          id="carouselExampleInterval1"
+          class="carousel slide"
+          data-bs-ride="carousel"
+        >
+          <div class="carousel-inner">
+            {{#each campAlbum in campAlbums}} {{!-- 캠프앨범 슬라이드1--}}
+            <div
+              class="carousel-item {{ active @index }}"
+              data-bs-interval="5000"
+            >
+              <div
+                id="projects"
+                data-isotope='{"layoutMode": "masonry"}'
+                class="row row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 justify-content-center pt-4"
+              >
+                {{#each campAlbum}}
+                <div class="javascript grid-item {{slideAlbumClass @index}}">
+                  <a href="/campAlbumDetail/{{_id}}" class="card-hover">
+                    <div class="overflow-hidden position-relative mb-4">
+                      <img
+                        src="{{link}}"
+                        alt=""
+                        class="img-zoom img-fluid rounded-4"
+                        style="height: 30rem; width: 30rem; object-fit: cover"
+                      />
+                    </div>
+                  </a>
+                </div>
+                {{/each}}
+              </div>
+            </div>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {{!--캠프리뷰-------------------------------------}}
+    <section class="position-relative">
+      <div class="container py-9 py-lg-11 position-relative z-index-1">
+        <div class="row mb-4 mb-lg-5 align-items-end justify-content-between">
+          <div class="mb-5">
+            <a href="/campReview">
+              <h2
+                class="display-5 text-black"
+                style="
+                  display: inline-block;
+                  transform: scale(1);
+                  transition: transform 0.2s ease-in-out;
+                "
+                onmouseover="this.style.transform='scale(1.2)';"
+                onmouseout="this.style.transform='scale(1)';"
+              >
+                CAMP REVIEW
+              </h2>
+            </a>
+            <a href="/campReview">
+              <button type="button" class="btn btn-outline-dark float-end">
+                <i class="fa-solid fa-plus"></i>
+                more
+              </button>
+            </a>
+          </div>
+        </div>
+
+        <div
+          id="carouselExampleInterval2"
+          class="carousel slide"
+          data-bs-ride="carousel"
+        >
+          <div class="carousel-inner">
+            {{!-- 캠프리뷰 슬라이드1--}} {{#each data in campReview }}
+            <div
+              class="carousel-item {{ active @index }}"
+              data-bs-interval="5000"
+            >
+              <div
+                id="projects"
+                data-isotope='{"layoutMode": "masonry"}'
+                class="row row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 justify-content-center pt-4"
+              >
+                {{#each data }}
+                <blockquote
+                  class="blockquote {{ margin
+                            @index }} mb-6 px-4 px-lg-6 border-top border-primary border-3 rounded-4 shadow-sm position-relative {{ slideClass
+                            @index}} mb-4 flex-grow-1 px-3 px-4"
+                  data-aos="fade-up"
+                >
+                  <a href="/detailReview/{{ this._id }}">
+                    <div class="">
+                      <!--Quote icon-->
+                      <div
+                        class="width-7x height-7x position-relative mt-n5 flex-center rounded-circle bg-primary mb-3"
+                      >
+                        <img
+                          class="fill-white width-2x h-auto"
+                          src="assets/img/vectors/quote-sign.svg"
+                          alt=""
+                          data-inject-svg
+                        />
+                      </div>
+
+                      <p
+                        class="fs-5 height-10x"
+                        style="
+                          color: black;
+                          white-space: normal;
+                          text-overflow: ellipsis;
+                          overflow: hidden;
+                          word-break: break-word;
+                          display: -webkit-box;
+                          -webkit-line-clamp: 3;
+                          -webkit-box-orient: vertical;
+                        "
+                      >
+                        {{ content }}
+                      </p>
+
+                      <div class="d-flex align-items-center mb-2">
+                        <!-- <img
+                          src="assets/img/avatar/4.jpg"
+                          alt="Image"
+                          class="avatar lg shadow-lg rounded-pill me-3 flex-shrink-0"
+                        /> -->
+                        <div
+                          class="ms-auto mt-3 d-flex text-ellipsis text-black"
+                        >
+                          <p>by</p>
+                          <h4 class="mb-0 ms-3" data-bax-chars="6">
+                            {{username}}
+                          </h4>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+                </blockquote>
+                {{/each}}
+              </div>
+            </div>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <a href="#" class="toTop">
+    <i class="bx bxs-up-arrow"></i>
+  </a>
+
+  {{!--
+  <script src="assets/js/theme.bundle.js"></script>
+  --}} {{!--
+  <script src="assets/vendor/node_modules/js/swiper-bundle.min.js"></script>
+  --}}
+  <script>
+    //swiper-testimonials
+    var swiperAuto = new Swiper(".swiper-testimonials", {
+      slidesPerView: "auto",
+      loop: true,
+      centeredSlides: true,
+      spaceBetween: 16,
+      pagination: {
+        el: ".swiperAuto-pagination",
+        clickable: true,
+      },
+      navigation: {
+        nextEl: ".swiperAuto-button-next",
+        prevEl: ".swiperAuto-button-prev",
+      },
+    });
+
+    //Swiper for text/headings
+    var swiperText = new Swiper(".swiper-text", {
+      autoplay: true,
+      direction: "vertical",
+      loop: true,
+      grabCursor: false,
+      speed: 600,
+    });
+  </script>
+  <!--end:Swiper slider-->
+</template>
+
+<!--</html>-->
